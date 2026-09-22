@@ -15,7 +15,9 @@ npm run dev
 npm run build
 ```
 
-The sermon-library and connection buttons are intentionally inactive until the fellowship's Google Drive archive and official contact details are ready. Replace the service placeholder with the fellowship's confirmed meeting details before launch.
+Services hold every Sunday at 10:00 am WAT at BNI Building, opposite Queen Idia Hall, University of Ibadan, Nigeria. The connection section and footer link directly to the fellowship's Google Maps pin. Service details and the global pastor's name are maintained in `src/data/fellowship.ts`.
+
+The sermon-library button remains intentionally inactive until the fellowship's Google Drive archive is ready.
 
 ## Temporary photography
 

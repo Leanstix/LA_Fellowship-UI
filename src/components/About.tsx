@@ -1,4 +1,5 @@
 import { formationPillars } from '../data/content'
+import { fellowship } from '../data/fellowship'
 
 export function About() {
   return (
@@ -10,7 +11,7 @@ export function About() {
       </div>
       <div className="about-body">
         <p className="about-lead">Light Army Fellowship is a community of students at the University of Ibadan growing in Christ, walking in purpose, and becoming visible expressions of His light.</p>
-        <p>Under the spiritual covering of Light Nation, led by Apostle Femi Lazarus, we are learning to know Jesus deeply and represent Him excellently—on campus and beyond.</p>
+        <p>Under the spiritual covering of Light Nation, headed by Apostle Femi Lazarus, and with {fellowship.globalPastor} as our global pastor, we are learning to know Jesus deeply and represent Him excellently—on campus and beyond.</p>
       </div>
 
       <div className="pillars">
