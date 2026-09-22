@@ -1,28 +1,30 @@
-import { ArrowUpRight, Headphones, FolderOpen } from 'lucide-react'
-import './Sermons.css'
+import { ArrowUpRight, Headphones, Play } from 'lucide-react'
 
 export function Sermons() {
   return (
-    <section className="teaching section-shell" id="sermons" aria-labelledby="teaching-heading">
-      <div className="teaching-topline"><span>03 / Stay in the Word</span><span>Teachings &amp; messages</span></div>
-      <div className="teaching-grid">
-        <div className="teaching-story">
-          <p className="teaching-overline">Beyond the Sunday gathering</p>
-          <h2 id="teaching-heading">The message stays.<br /><em>Let it shape your life.</em></h2>
-          <p>Revisit a teaching. Sit with a truth. Carry it into your week. Soon, messages from the fellowship will be available to listen to wherever you are.</p>
-          <a className="teaching-visit" href="#connect">Join us this Sunday <ArrowUpRight size={20} aria-hidden="true" /></a>
+    <section className="sermons section-shell" id="sermons">
+      <div className="section-kicker"><span>03</span><p>Stay in the Word</p></div>
+      <div className="sermon-layout">
+        <div className="sermon-copy">
+          <p className="coming-soon"><i /> Sermon library · coming soon</p>
+          <h2>Truth for<br /><em>everyday life.</em></h2>
+          <p>Missed a meeting or want to listen again? Our growing sermon library will make teachings from the fellowship available wherever you are.</p>
+          <button className="ghost-button" type="button" disabled aria-describedby="library-note">
+            Open sermon library <ArrowUpRight />
+          </button>
+          <small id="library-note">The Google Drive archive will be connected here.</small>
         </div>
-        <div className="teaching-library" aria-label="Sermon library, coming soon">
-          <div className="teaching-cover">
-            <div className="teaching-cover-top"><Headphones size={28} strokeWidth={1.5} aria-hidden="true" /><span>Light Army Fellowship / UI</span></div>
-            <p className="teaching-cover-title">Listen.<br />Learn.<br /><em>Live.</em></p>
-            <p className="teaching-cover-footer">The Word for your everyday.</p>
+
+        <div className="sermon-art" aria-hidden="true">
+          <div className="sound-ring ring-one" />
+          <div className="sound-ring ring-two" />
+          <div className="sound-ring ring-three" />
+          <div className="sermon-disc">
+            <Headphones />
+            <span>Listen.<br />Learn.<br />Live.</span>
           </div>
-          <div className="teaching-library-details">
-            <div className="teaching-library-label"><h3>Sermon library</h3><span>Coming soon</span></div>
-            <p>Our messages will be collected in one place, ready to return to throughout the week.</p>
-            <div className="teaching-archive-note"><FolderOpen size={19} aria-hidden="true" /><span>Google Drive archive · Not yet available</span></div>
-          </div>
+          <button className="play-button" tabIndex={-1}><Play fill="currentColor" /></button>
+          <div className="sound-bars">{Array.from({ length: 18 }).map((_, i) => <i key={i} style={{ height: `${18 + ((i * 17) % 54)}px` }} />)}</div>
         </div>
       </div>
     </section>
