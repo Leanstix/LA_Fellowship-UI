@@ -6,6 +6,7 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Moments } from './components/Moments'
 import { Sermons } from './components/Sermons'
+import { Confession } from './components/Confession'
 import { moments } from './data/content'
 import logo from './assets/la-fellowship-logo.png'
 
@@ -27,6 +28,7 @@ function App() {
         <div data-reveal><About /></div>
         <div data-reveal><Moments /></div>
         <div data-reveal><Sermons /></div>
+        <Confession />
         <div data-reveal><Connect /></div>
       </main>
       <Footer logo={logo} />
