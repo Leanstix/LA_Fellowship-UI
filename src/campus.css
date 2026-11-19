@@ -55,13 +55,13 @@
 .campus-sunday a { display: inline-flex; align-items: center; min-height: 44px; gap: 5px; margin: -3px 0; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 .campus-sunday a:hover { color: #633a15; }
 .campus-sunday .content-notice { grid-column: 1 / -1; display: block; }
-.campus-hero-media { grid-area: media; background: #2c2219; position: relative; min-height: 480px; overflow: hidden; }
+.campus-hero-media { grid-area: media; position: relative; min-height: 480px; margin: 0; overflow: hidden; background: #2c2219; }
 .campus-hero-media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.campus-hero-emblem {
-  position: absolute; inset: 0; display: grid; place-items: center;
-  background: repeating-radial-gradient(circle at center, transparent 0 32px, #ffbc4e23 33px 34px, transparent 35px 64px), radial-gradient(closest-side, #6b3d21, #2c2219);
-}
-.campus-hero-emblem img { width: min(62%, 275px); height: auto; }
+.campus-hero-media > .campus-gate-photo { object-position: center 46%; }
+.campus-hero-media figcaption { position: absolute; inset: auto 0 0; display: grid; gap: 4px; padding: 30px 14px 13px; background: linear-gradient(transparent, #1d1912f5 54%); color: white; font-size: 14px; }
+.campus-hero-media figcaption span { font-size: 12px; line-height: 1.5; }
+.campus-hero-media figcaption a { text-decoration: underline; text-underline-offset: 2px; }
+.campus-hero-media figcaption a:focus-visible { outline-offset: 1px; }
 
 @media (max-width: 1000px) {
   .campus-shell { width: calc(100% - 56px); }

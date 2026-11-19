@@ -31,6 +31,12 @@ export const moments: PublicMoment[] = [
   },
 ]
 
+const illustrativeImages = new Set(moments.map(({ image }) => image.split('?')[0]))
+
+export function isIllustrativeMoment(moment: PublicMoment) {
+  return illustrativeImages.has(moment.image.split('?')[0])
+}
+
 export const formationPillars = [
   {
     title: 'The Word',

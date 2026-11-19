@@ -9,7 +9,7 @@ import { Hero } from './components/Hero'
 import { Moments } from './components/Moments'
 import { Sermons } from './components/Sermons'
 import { Confession } from './components/Confession'
-import { moments } from './data/content'
+import { isIllustrativeMoment, moments } from './data/content'
 import { fellowship } from './data/fellowship'
 import logo from './assets/la-fellowship-logo.png'
 import './campus.css'
@@ -43,7 +43,7 @@ export function PublicSite() {
     <div className="campus-site">
       <Header logo={logo} />
       <main id="main">
-        <Hero moment={content?.moments[0]} settings={content?.settings} notice={serviceNotice} />
+        <Hero moment={content?.moments.find((moment) => !isIllustrativeMoment(moment))} settings={content?.settings} notice={serviceNotice} />
         <Connect settings={content?.settings} notice={serviceNotice} />
         <About />
         <Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} />
