@@ -1,0 +1,31 @@
+.admin { min-height: 100vh; background: #eee8dd; color: var(--ink); }
+.admin-container { width: min(100% - 48px, 1120px); margin-inline: auto; }
+.admin-header { color: #fff; background: var(--ink); }
+.admin-topbar { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-block: 12px; }
+.admin-brand { min-width: 0; display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.admin-brand img { width: 42px; flex: 0 0 auto; }
+.admin-main { padding-block: 48px; }
+.admin h1 { margin: 0 0 24px; font-size: clamp(32px, 6vw, 56px); line-height: 1.06; letter-spacing: -.045em; }
+.admin h2 { margin: 0 0 8px; font-size: 24px; line-height: 1.15; letter-spacing: -.025em; }
+.admin p { margin: 0; line-height: 1.6; }
+.admin-panel { padding: clamp(18px, 4vw, 32px); border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+.admin-sign-in { max-width: 430px; }
+.admin-form { display: grid; gap: 18px; align-content: start; }
+.admin-form label { display: grid; gap: 6px; font-size: 14px; font-weight: 700; }
+.admin-form input, .admin-form select { min-width: 0; width: 100%; min-height: 44px; padding: 9px 12px; border: 1px solid #9d9285; border-radius: 7px; color: var(--ink); background: #fffdfa; font: inherit; font-size: 16px; font-weight: 400; }
+.admin-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.admin-button { width: fit-content; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 14px; border: 1px solid transparent; border-radius: 7px; background: var(--gold); color: var(--ink); font-size: 14px; font-weight: 700; text-align: center; cursor: pointer; }
+.admin-button:hover { background: #f0a200; }
+.admin-button:disabled { opacity: .6; cursor: wait; }
+.admin-secondary { color: inherit; background: transparent; border-color: currentColor; }
+.admin-secondary:hover { color: var(--ink); background: #ffe6a3; border-color: #9b6800; }
+.admin-error { padding: 10px 12px; border: 1px solid #d7988a; border-radius: 7px; background: #fce9e4; color: #7b2415; }
+.admin-error + .admin-button { margin-top: 14px; }
+.admin :focus-visible { outline: 3px solid #945800; outline-offset: 3px; }
+.admin-header :focus-visible { outline-color: var(--gold); }
+
+@media (max-width: 620px) {
+  .admin-container { width: calc(100% - 32px); }
+  .admin-topbar { flex-wrap: wrap; }
+  .admin-main { padding-block: 32px; }
+}
