@@ -4,5 +4,6 @@ export const fellowship = {
   landmark: 'Opposite Queen Idia Hall',
   location: 'University of Ibadan, Nigeria',
   directionsUrl: 'https://maps.app.goo.gl/4TQeth7xyz1cN9QQ9',
+  sermonArchiveUrl: null,
   globalPastor: 'Pastor Bamidele Samuel',
 }

@@ -1,7 +1,10 @@
 import { ArrowUpRight, MapPin } from 'lucide-react'
-import { fellowship } from '../data/fellowship'
+import type { ReactNode } from 'react'
+import type { Settings } from '../api/content'
 
-export function Connect() {
+type ConnectProps = { settings?: Settings; notice: ReactNode }
+
+export function Connect({ settings, notice }: ConnectProps) {
   return (
     <section className="connect" id="connect">
       <div className="connect-orbit orbit-one" />
@@ -11,8 +14,10 @@ export function Connect() {
         <p className="eyebrow eyebrow-dark"><span /> Your place. Your people.</p>
         <h2>Come as you are.<br /><em>Leave carrying light.</em></h2>
         <p>Whether you are new to campus, exploring faith, or looking for a spiritual family, you do not have to walk alone.</p>
-        <a className="dark-button" href={fellowship.directionsUrl} target="_blank" rel="noopener noreferrer" aria-label="Get directions to BNI Building on Google Maps (opens in a new tab)">Get directions <ArrowUpRight aria-hidden="true" /></a>
-        <div className="location"><MapPin aria-hidden="true" /><span><strong>{fellowship.serviceTime}</strong><br />{fellowship.venue}<br />{fellowship.landmark}<br />{fellowship.location}</span></div>
+        {settings ? <>
+          <a className="dark-button" href={settings.directionsUrl} target="_blank" rel="noopener noreferrer" aria-label={`Get directions to ${settings.venue} (opens in a new tab)`}>Get directions <ArrowUpRight aria-hidden="true" /></a>
+          <div className="location"><MapPin aria-hidden="true" /><span><strong>{settings.serviceTime}</strong><br />{settings.venue}<br />{settings.landmark}<br />{settings.location}</span></div>
+        </> : notice}
       </div>
     </section>
   )

@@ -1,4 +1,4 @@
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 type HeaderProps = {
@@ -38,18 +38,19 @@ export function Header({ logo }: HeaderProps) {
         {links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
       </nav>
 
-      <a className="header-cta" href="#connect">Join the family <span aria-hidden="true">↗</span></a>
+      <a className="header-cta" href="#connect">Join the family <ArrowUpRight aria-hidden="true" size={14} /></a>
       <button className="menu-button" onClick={() => setOpen((value) => !value)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>
         {open ? <X /> : <Menu />}
       </button>
 
       <div className={`mobile-panel ${open ? 'is-open' : ''}`}>
-        <nav aria-label="Mobile navigation">
+        <nav aria-label="Mobile navigation" inert={!open}>
           {links.map((link, index) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               <small>0{index + 1}</small>{link.label}
             </a>
           ))}
+          <a href="#connect" onClick={() => setOpen(false)}>Join the family</a>
         </nav>
         <p>University of Ibadan<br />Light Nation family</p>
       </div>
