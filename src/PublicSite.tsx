@@ -12,6 +12,7 @@ import { Confession } from './components/Confession'
 import { moments } from './data/content'
 import { fellowship } from './data/fellowship'
 import logo from './assets/la-fellowship-logo.png'
+import './campus.css'
 
 type LoadState = { status: 'loading' | 'error' } | { status: 'ready'; content: Content }
 
@@ -52,10 +53,10 @@ export function PublicSite() {
   const serviceNotice = <ContentNotice state={state.status} subject="service details" onRetry={retry} />
 
   return (
-    <>
+    <div className="campus-site">
       <Header logo={logo} />
-      <main>
-        <Hero moment={content?.moments[0]} />
+      <main id="main">
+        <Hero moment={content?.moments[0]} settings={content?.settings} notice={serviceNotice} />
         <div data-reveal><About /></div>
         <div data-reveal><Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} /></div>
         <div data-reveal><Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} /></div>
@@ -63,6 +64,6 @@ export function PublicSite() {
         <div data-reveal><Connect settings={content?.settings} notice={serviceNotice} /></div>
       </main>
       <Footer logo={logo} settings={content?.settings} notice={serviceNotice} />
-    </>
+    </div>
   )
 }
