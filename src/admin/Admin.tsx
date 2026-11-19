@@ -1,7 +1,8 @@
 import { ArrowUpRight, LogOut } from 'lucide-react'
-import { useEffect, useState, type FormEvent } from 'react'
-import { apiEnabled, request } from '../api/content'
+import { useCallback, useEffect, useState, type FormEvent } from 'react'
+import { ApiError, apiEnabled, apiMessage, request } from '../api/content'
 import logo from '../assets/la-fellowship-logo.png'
+import { Workspace } from './Workspace'
 import './admin.css'
 
 type Session = {
@@ -9,9 +10,6 @@ type Session = {
   username: string | null
   csrfToken: string
 }
-
-const getMessage = (error: unknown, fallback: string) =>
-  error instanceof Error && error.message !== 'Failed to fetch' ? error.message : fallback
 
 export default function Admin() {
   const [session, setSession] = useState<Session>()
@@ -51,11 +49,30 @@ export default function Admin() {
       })
       setSession(updatedSession)
     } catch (error) {
-      setActionError(getMessage(error, 'Unable to reach the server. Try again.'))
+      setActionError(apiMessage(error, 'Unable to reach the server. Try again.'))
+      if (error instanceof ApiError && (error.status === 403 || (!body && error.status === 401))) {
+        setAttempt((value) => value + 1)
+      }
     } finally {
       setPending(false)
     }
   }
+
+  const csrfToken = session?.csrfToken
+  const adminRequest = useCallback(async <T,>(path: string, options?: RequestInit): Promise<T> => {
+    try {
+      const headers = new Headers(options?.headers)
+      if (csrfToken && options?.method && options.method !== 'GET') headers.set('X-CSRF-Token', csrfToken)
+      return await request<T>(`/admin${path}`, { ...options, headers })
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        setSession(undefined)
+        setActionError('Your session expired. Sign in to continue.')
+        setAttempt((value) => value + 1)
+      }
+      throw error
+    }
+  }, [csrfToken])
 
   const signIn = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -100,13 +117,13 @@ export default function Admin() {
         ) : session.authenticated ? (
           <>
             {actionError && <p className="admin-error" role="alert">{actionError}</p>}
-            <div className="admin-panel"><p>Signed in as {session.username}.</p></div>
+            <Workspace username={session.username} adminRequest={adminRequest} />
           </>
         ) : (
           <form className="admin-panel admin-sign-in admin-form" onSubmit={signIn}>
             <h2>Sign in</h2>
-            <label>Username<input name="username" autoComplete="username" required /></label>
-            <label>Password<input name="password" type="password" autoComplete="current-password" required /></label>
+            <label>Username<input name="username" autoComplete="username" maxLength={64} required /></label>
+            <label>Password<input name="password" type="password" autoComplete="current-password" maxLength={256} required /></label>
             {actionError && <p className="admin-error" role="alert">{actionError}</p>}
             <button className="admin-button" type="submit" disabled={pending}>{pending ? 'Signing in…' : 'Sign in'}</button>
           </form>

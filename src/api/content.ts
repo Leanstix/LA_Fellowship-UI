@@ -36,7 +36,15 @@ export async function request<T>(path: string, options?: RequestInit): Promise<T
   const response = await fetch(`/api${path}`, { ...options, headers, credentials: 'same-origin', cache: 'no-store' })
   if (!response.ok) {
     const payload: { detail?: unknown } | null = await response.json().catch(() => null)
-    throw new ApiError(response.status, typeof payload?.detail === 'string' ? payload.detail : 'The request could not be completed.')
+    const detail = payload?.detail
+    const validationMessages = Array.isArray(detail)
+      ? detail.flatMap((issue) => typeof issue?.msg === 'string' ? [issue.msg.replace(/^Value error, /, '')] : [])
+      : []
+    throw new ApiError(response.status, typeof detail === 'string' ? detail : validationMessages.join(' ') || 'The request could not be completed.')
   }
   return response.status === 204 ? undefined as T : response.json()
+}
+
+export function apiMessage(error: unknown, fallback: string) {
+  return error instanceof ApiError ? error.message : fallback
 }

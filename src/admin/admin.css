@@ -29,3 +29,10 @@
   .admin-topbar { flex-wrap: wrap; }
   .admin-main { padding-block: 32px; }
 }
+
+.admin .admin-account { margin: -12px 0 24px; }
+.admin-settings { max-width: 730px; }
+.admin-form fieldset { display: grid; gap: 14px; min-inline-size: 0; margin: 0; padding: 0; border: 0; }
+.admin-form fieldset + fieldset { margin-top: 12px; padding-top: 8px; }
+.admin-form legend { margin-bottom: 14px; padding: 0; font-size: 24px; font-weight: 700; letter-spacing: -.025em; }
+.admin-form .admin-hint { margin-top: -8px; color: #63584c; font-size: 14px; }
