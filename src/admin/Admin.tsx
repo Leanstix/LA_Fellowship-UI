@@ -3,12 +3,14 @@ import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { ApiError, apiEnabled, apiMessage, request } from '../api/content'
 import logo from '../assets/la-fellowship-logo.png'
 import { Workspace } from './Workspace'
+import type { OfficerPermissions } from './permissions'
 import './admin.css'
 
 type Session = {
   authenticated: boolean
   username: string | null
   csrfToken: string
+  permissions?: OfficerPermissions
 }
 
 export default function Admin() {
@@ -117,7 +119,7 @@ export default function Admin() {
         ) : session.authenticated ? (
           <>
             {actionError && <p className="admin-error" role="alert">{actionError}</p>}
-            <Workspace username={session.username} adminRequest={adminRequest} />
+            <Workspace username={session.username} permissions={session.permissions} adminRequest={adminRequest} />
           </>
         ) : (
           <form className="admin-panel admin-sign-in admin-form" onSubmit={signIn}>
