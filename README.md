@@ -13,15 +13,17 @@ npm run dev
 
 The standalone site uses the service details in `src/data/fellowship.ts` and photos in `src/data/content.ts`. The sermon section shows “coming soon” until an archive URL is configured.
 
-To use live content and open the admin dashboard, run the fellowship API locally on port 8000 with `LA_SESSION_COOKIE_SECURE=false` for HTTP development, then start Vite with API access enabled.
+To use live content and the officer dashboard, start the Django backend on port 8000 with `LA_DEBUG=true` for local HTTP, then start Vite with API access enabled.
 
 ```bash
 VITE_ENABLE_FELLOWSHIP_API=true npm run dev
 ```
 
-Vite proxies `/api/*` to `http://127.0.0.1:8000`. Set `LA_BACKEND_URL` before launching Vite if the API runs at another address. Open `http://localhost:5173/#/admin` and sign in with an account provisioned on the backend using `python -m laf_backend.manage set-admin <username>`.
+Vite proxies `/api/*`, `/office/*`, and `/static/*` to `http://127.0.0.1:8000`. Set `LA_BACKEND_URL` before launching Vite if the backend runs at another address. Open `http://localhost:5173/#/admin` and sign in with an officer account provisioned on the backend. Use **Open operations** to continue to the Django office with the same session. The office exposes the sections assigned to your role. The current president can open **Executive access** from the dashboard.
 
-The service and sermon editor publishes changes when an administrator saves. Leave the sermon archive URL blank to show “coming soon.” Gallery photos use public HTTPS image links. Photos saved as drafts stay visible in the dashboard. The first published photo also appears in the public site's hero.
+Officers can view or edit the public service details, sermon archive, and gallery according to their permissions. The service and sermon editor publishes changes on save. Leave the sermon archive URL blank to show “coming soon.” Gallery photos use public HTTPS image links. Drafts stay in the dashboard. The first published photo beyond the illustrative defaults appears in the public hero. The hero shows the University of Ibadan main gate until a fellowship photo is published.
+
+In API mode, test the optional visitor contact form by opening **Plan your visit**, selecting **Request a follow-up**, and submitting a consented test request. An officer with follow-up access can confirm it appears under **First timers** in the Django office.
 
 ## Production deployment
 
@@ -31,12 +33,18 @@ Run `npm run build` for a standalone site. To enable the dashboard and live publ
 VITE_ENABLE_FELLOWSHIP_API=true npm run build
 ```
 
-Serve the output in `dist/` and route `/api/*` to the fellowship API on the same HTTPS origin. The API uses secure session cookies in production. For example, a Caddy deployment with the build copied to `/srv/light-army-fellowship` and the API listening locally on port 8000 can use the following configuration.
+Serve `dist/` and the Django backend on the same HTTPS origin so both dashboards share a secure session. The example below uses Caddy, a frontend build copied to `/srv/light-army-fellowship`, Django listening on port 8000, and Django's collected static files copied to `/srv/light-army-fellowship-office-static`.
 
 ```caddyfile
 fellowship.example.org {
-    handle /api/* {
+    @backend path /api/* /office/*
+    handle @backend {
         reverse_proxy 127.0.0.1:8000
+    }
+
+    handle_path /static/* {
+        root * /srv/light-army-fellowship-office-static
+        file_server
     }
 
     handle {
@@ -46,7 +54,7 @@ fellowship.example.org {
 }
 ```
 
-Replace `fellowship.example.org` with the site hostname. The API route keeps the `/api` prefix. Open `/#/admin` on the deployed site to sign in. If the static host cannot proxy `/api/*`, use a reverse proxy in front of both the static site and the API.
+Replace `fellowship.example.org` with the site hostname. Leave the `/api/` and `/office/` prefixes on requests passed to Django. Configure Django's `LA_ALLOWED_HOSTS` and enable `LA_TRUST_PROXY_SSL_HEADER=true` when Caddy sets the forwarded protocol. Open `/#/admin` on the deployed site to sign in.
 
 ## Temporary photography
 

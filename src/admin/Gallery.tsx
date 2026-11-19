@@ -2,6 +2,7 @@ import { ImagePlus } from 'lucide-react'
 import { useRef, useState, type FormEvent } from 'react'
 import { apiMessage, type MomentFields, type PublicMoment } from '../api/content'
 import type { AdminRequest } from './Workspace'
+import type { OfficerPermissions } from './permissions'
 
 type MomentStatus = 'draft' | 'published'
 type MomentInput = MomentFields & { status: MomentStatus }
@@ -10,12 +11,13 @@ export type AdminMoment = PublicMoment & { status: MomentStatus }
 
 type GalleryProps = {
   initialMoments: AdminMoment[]
+  permissions: Pick<OfficerPermissions, 'addMoment' | 'changeMoment' | 'deleteMoment'>
   adminRequest: AdminRequest
 }
 
 const emptyMoment: MomentInput = { image: '', label: '', alt: '', align: 'center', status: 'draft' }
 
-export function Gallery({ initialMoments, adminRequest }: GalleryProps) {
+export function Gallery({ initialMoments, permissions, adminRequest }: GalleryProps) {
   const [moments, setMoments] = useState(initialMoments)
   const [editor, setEditor] = useState<'new' | number | null>(null)
   const [confirmDelete, setConfirmDelete] = useState<number>()
@@ -96,9 +98,9 @@ export function Gallery({ initialMoments, adminRequest }: GalleryProps) {
       <div className="admin-section-head">
         <div>
           <h2 id="admin-gallery-heading" ref={heading} tabIndex={-1}>Gallery</h2>
-          <p>Published photos appear in Moments. The first published photo also appears on the homepage.</p>
+          <p>Published photos appear in Moments. The first fellowship photo also appears at the top of the homepage.</p>
         </div>
-        {!editor && <button className="admin-button" type="button" disabled={pending || confirmDelete !== undefined} onClick={() => openEditor('new')}><ImagePlus size={17} aria-hidden="true" /> Add photo</button>}
+        {permissions.addMoment && !editor && <button className="admin-button" type="button" disabled={pending || confirmDelete !== undefined} onClick={() => openEditor('new')}><ImagePlus size={17} aria-hidden="true" /> Add photo</button>}
       </div>
 
       <p className="admin-feedback" role="status">{feedback}</p>
@@ -141,19 +143,21 @@ export function Gallery({ initialMoments, adminRequest }: GalleryProps) {
                 </div>
               ) : (
                 <div className="admin-actions">
-                  <button className="admin-button admin-secondary" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`Edit ${moment.label}`} onClick={() => openEditor(id)}>Edit</button>
-                  <button className="admin-button admin-secondary" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`${moment.status === 'draft' ? 'Publish' : 'Unpublish'} ${moment.label}`} onClick={() => void saveMoment(id, { ...moment, status: moment.status === 'draft' ? 'published' : 'draft' })}>{moment.status === 'draft' ? 'Publish' : 'Unpublish'}</button>
-                  <button className="admin-button admin-secondary admin-delete" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`Delete ${moment.label}`} onClick={() => {
+                  {permissions.changeMoment && <>
+                    <button className="admin-button admin-secondary" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`Edit ${moment.label}`} onClick={() => openEditor(id)}>Edit</button>
+                    <button className="admin-button admin-secondary" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`${moment.status === 'draft' ? 'Publish' : 'Unpublish'} ${moment.label}`} onClick={() => void saveMoment(id, { ...moment, status: moment.status === 'draft' ? 'published' : 'draft' })}>{moment.status === 'draft' ? 'Publish' : 'Unpublish'}</button>
+                  </>}
+                  {permissions.deleteMoment && <button className="admin-button admin-secondary admin-delete" type="button" disabled={pending || !!editor || confirmDelete !== undefined} aria-label={`Delete ${moment.label}`} onClick={() => {
                     setError('')
                     setFeedback('')
                     setConfirmDelete(id)
-                  }}>Delete</button>
+                  }}>Delete</button>}
                 </div>
               )}
             </li>
           ))}
         </ul>
-      ) : editor === null && <p className="admin-gallery-empty">No photos yet. Add a photo to get started.</p>}
+      ) : editor === null && <p className="admin-gallery-empty">{permissions.addMoment ? 'No photos yet. Add a photo to get started.' : 'No photos yet.'}</p>}
     </section>
   )
 }

@@ -9,9 +9,10 @@ import { Hero } from './components/Hero'
 import { Moments } from './components/Moments'
 import { Sermons } from './components/Sermons'
 import { Confession } from './components/Confession'
-import { moments } from './data/content'
+import { isIllustrativeMoment, moments } from './data/content'
 import { fellowship } from './data/fellowship'
 import logo from './assets/la-fellowship-logo.png'
+import './campus.css'
 
 type LoadState = { status: 'loading' | 'error' } | { status: 'ready'; content: Content }
 
@@ -31,19 +32,6 @@ export function PublicSite() {
     return () => controller.abort()
   }, [attempt])
 
-  useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>('[data-reveal]')
-    if (!('IntersectionObserver' in window)) {
-      sections.forEach((section) => section.classList.add('is-visible'))
-      return
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('is-visible'))
-    }, { threshold: 0.12 })
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [])
-
   const retry = () => {
     setState({ status: 'loading' })
     setAttempt((value) => value + 1)
@@ -52,17 +40,17 @@ export function PublicSite() {
   const serviceNotice = <ContentNotice state={state.status} subject="service details" onRetry={retry} />
 
   return (
-    <>
+    <div className="campus-site">
       <Header logo={logo} />
-      <main>
-        <Hero moment={content?.moments[0]} />
-        <div data-reveal><About /></div>
-        <div data-reveal><Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} /></div>
-        <div data-reveal><Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} /></div>
+      <main id="main">
+        <Hero moment={content?.moments.find((moment) => !isIllustrativeMoment(moment))} settings={content?.settings} notice={serviceNotice} />
+        <Connect settings={content?.settings} notice={serviceNotice} />
+        <About />
+        <Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} />
+        <Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} />
         <Confession />
-        <div data-reveal><Connect settings={content?.settings} notice={serviceNotice} /></div>
       </main>
       <Footer logo={logo} settings={content?.settings} notice={serviceNotice} />
-    </>
+    </div>
   )
 }

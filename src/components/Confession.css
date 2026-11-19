@@ -1,8 +1,7 @@
 .confession {
   padding-block: clamp(64px, 8vw, 120px);
-  background: var(--ink);
-  color: var(--paper);
-  scroll-margin-top: 88px;
+  background: var(--campus-ink);
+  color: var(--campus-paper);
 }
 
 .confession-inner {
@@ -12,26 +11,21 @@
   align-items: start;
 }
 
-.confession-kicker {
+.confession .campus-kicker {
   margin: 0 0 24px;
-  color: var(--gold);
-  font-size: .875rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
+  color: var(--campus-amber);
 }
 
 .confession-heading h2 {
   margin: 0;
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
-  line-height: 1.16;
-  font-weight: 600;
+  font: 700 clamp(2.75rem, 5.3vw, 4.5rem)/.94 var(--campus-display);
   letter-spacing: -.04em;
 }
 
 .confession-heading h2 em {
-  color: var(--gold);
-  font-family: 'Playfair Display', serif;
+  color: var(--campus-amber);
+  font-family: var(--campus-serif);
+  font-size: .76em;
   font-weight: 600;
 }
 
@@ -49,13 +43,12 @@
 
 .confession-words .confession-declaration {
   margin-bottom: 0;
-  color: var(--gold);
-  font-family: 'Playfair Display', serif;
+  color: var(--campus-amber);
+  font-family: var(--campus-serif);
   font-size: clamp(1.5rem, 2.5vw, 2.25rem);
   line-height: 1.4;
 }
 
 @media (max-width: 760px) {
-  .confession { scroll-margin-top: 76px; }
   .confession-inner { grid-template-columns: 1fr; }
 }

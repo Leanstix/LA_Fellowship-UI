@@ -31,19 +31,22 @@ export const moments: PublicMoment[] = [
   },
 ]
 
+const illustrativeImages = new Set(moments.map(({ image }) => image.split('?')[0]))
+
+export function isIllustrativeMoment(moment: PublicMoment) {
+  return illustrativeImages.has(moment.image.split('?')[0])
+}
+
 export const formationPillars = [
   {
-    number: '01',
     title: 'The Word',
     copy: 'Clear teaching that builds conviction, shapes character, and gives language to faith.',
   },
   {
-    number: '02',
     title: 'Worship',
     copy: 'More than a song — a life fully yielded to God and awake to His presence.',
   },
   {
-    number: '03',
     title: 'Community',
     copy: 'A spiritual family where students are known, strengthened, and sent to shine.',
   },
