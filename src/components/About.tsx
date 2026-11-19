@@ -1,26 +1,31 @@
+import { BookOpen, HandHeart, Music2 } from 'lucide-react'
 import { formationPillars } from '../data/content'
 import { fellowship } from '../data/fellowship'
 
+const pillarIcons = [BookOpen, Music2, HandHeart]
+
 export function About() {
   return (
-    <section className="about section-shell" id="about">
-      <div className="section-kicker"><span>01</span><p>Who we are</p></div>
-      <div className="about-intro">
-        <p className="about-side-note">A campus expression of<br />the Light Nation family.</p>
-        <h2>Built in the Word.<br /><em>Burning with light.</em></h2>
-      </div>
-      <div className="about-body">
-        <p className="about-lead">Light Army Fellowship is a community of students at the University of Ibadan growing in Christ, walking in purpose, and becoming visible expressions of His light.</p>
-        <p>Under the spiritual covering of Light Nation, led by Apostle Femi Lazarus and Pastor Miracle Femi Lazarus, and with {fellowship.globalPastor} as our global pastor, we are learning to know Jesus deeply and represent Him excellently—on campus and beyond.</p>
-      </div>
+    <section className="campus-about" id="about" aria-labelledby="campus-about-heading">
+      <div className="campus-shell campus-about-layout">
+        <div className="campus-about-copy">
+          <p className="campus-kicker">About the fellowship</p>
+          <h2 className="campus-title" id="campus-about-heading">Faith, lived together.</h2>
+          <p className="campus-about-lead">We are a community of students at the University of Ibadan growing in Christ, walking in purpose and carrying His light on campus.</p>
+          <p>Light Army Fellowship is a campus expression of Light Nation, led by Apostle Femi Lazarus and Pastor Miracle Femi Lazarus. {fellowship.globalPastor} is our global pastor.</p>
+        </div>
 
-      <div className="pillars">
-        {formationPillars.map((pillar) => (
-          <article key={pillar.number}>
-            <span>{pillar.number}</span>
-            <div><h3>{pillar.title}</h3><p>{pillar.copy}</p></div>
-          </article>
-        ))}
+        <ul className="campus-pillars">
+          {formationPillars.map(({ title, copy }, index) => {
+            const Icon = pillarIcons[index]
+            return (
+              <li key={title}>
+                <Icon size={24} aria-hidden="true" />
+                <div><h3>{title}</h3><p>{copy}</p></div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )

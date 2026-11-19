@@ -86,3 +86,33 @@
   .campus-sunday { gap: 7px 9px; padding: 12px; }
   .campus-kicker { font-size: 11px; letter-spacing: .07em; }
 }
+
+.campus-title { margin: 9px 0 20px; font: 700 clamp(52px, 6vw, 87px)/.92 var(--campus-display); letter-spacing: -.025em; }
+.campus-visit { padding-block: clamp(38px, 6vw, 88px); background: #ecdcc3; }
+.campus-visit-layout, .campus-about-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; gap: clamp(30px, 7vw, 105px); }
+.campus-visit-copy > p:not(.campus-kicker), .campus-about-copy > p:not(.campus-kicker) { max-width: 51ch; margin: 0; color: #544638; line-height: 1.62; }
+.campus-visit-copy h3 { margin: 22px 0 5px; font-size: 18px; }
+.campus-visit-card {
+  padding: clamp(20px, 3.2vw, 40px);
+  border: 1px solid #ccb79b;
+  border-top: 4px solid var(--campus-rust);
+  background: var(--campus-white);
+}
+.campus-visit-card h3 { margin: 0 0 12px; font: 700 34px/1 var(--campus-display); }
+.campus-visit-detail { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid var(--campus-line); }
+.campus-visit-detail svg { margin-top: 2px; color: var(--campus-rust); flex-shrink: 0; }
+.campus-visit-detail p { margin: 0; line-height: 1.6; }
+.campus-visit-card .campus-button { margin-top: 8px; }
+.campus-about { padding-block: clamp(46px, 8vw, 108px); }
+.campus-about-copy > .campus-about-lead { margin-bottom: 13px; color: var(--campus-ink); font-size: clamp(18px, 2vw, 22px); }
+.campus-pillars { list-style: none; margin: 0; padding: 0; }
+.campus-pillars li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; padding: 19px 0; border-top: 1px solid var(--campus-line); }
+.campus-pillars li:last-child { border-bottom: 1px solid var(--campus-line); }
+.campus-pillars svg { margin-top: 2px; color: var(--campus-rust); }
+.campus-pillars h3 { margin: 0 0 4px; font-size: 18px; }
+.campus-pillars p { margin: 0; color: #544638; line-height: 1.5; }
+
+@media (max-width: 760px) {
+  .campus-visit-layout, .campus-about-layout { grid-template-columns: minmax(0, 1fr); }
+  .campus-title { font-size: clamp(46px, 11.5vw, 68px); margin-bottom: 14px; }
+}

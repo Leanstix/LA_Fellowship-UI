@@ -57,11 +57,11 @@ export function PublicSite() {
       <Header logo={logo} />
       <main id="main">
         <Hero moment={content?.moments[0]} settings={content?.settings} notice={serviceNotice} />
-        <div data-reveal><About /></div>
+        <Connect settings={content?.settings} notice={serviceNotice} />
+        <About />
         <div data-reveal><Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} /></div>
         <div data-reveal><Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} /></div>
         <Confession />
-        <div data-reveal><Connect settings={content?.settings} notice={serviceNotice} /></div>
       </main>
       <Footer logo={logo} settings={content?.settings} notice={serviceNotice} />
     </div>
