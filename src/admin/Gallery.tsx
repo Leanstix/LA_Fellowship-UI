@@ -153,7 +153,7 @@ export function Gallery({ initialMoments, adminRequest }: GalleryProps) {
             </li>
           ))}
         </ul>
-      ) : <p className="admin-gallery-empty">No photos yet. Add a photo to get started.</p>}
+      ) : editor === null && <p className="admin-gallery-empty">No photos yet. Add a photo to get started.</p>}
     </section>
   )
 }
