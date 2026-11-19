@@ -155,3 +155,24 @@
   .campus-footer-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px 18px; }
   .campus-footer-brand { grid-column: 1 / -1; }
 }
+
+.campus-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.campus-contact { max-width: 560px; margin-top: 23px; border: 1px solid #ccb79b; background: var(--campus-white); }
+.campus-contact summary { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px; list-style: none; font-weight: 700; cursor: pointer; }
+.campus-contact summary::-webkit-details-marker { display: none; }
+.campus-contact[open] summary { border-bottom: 1px solid var(--campus-line); }
+.campus-contact[open] summary svg { transform: rotate(180deg); }
+.campus-contact > p { margin: 15px 16px 0; line-height: 1.48; }
+.campus-contact .campus-contact-success:empty { margin: 0; }
+.campus-contact .campus-contact-success:not(:empty) { margin: 15px 16px; color: #2e5237; font-weight: 700; }
+.campus-contact form { padding: 16px; }
+.campus-contact fieldset { display: grid; min-width: 0; margin: 0; padding: 0; border: 0; }
+.campus-contact label { margin-bottom: 5px; font-size: 14px; font-weight: 700; }
+.campus-contact input:not([type="checkbox"]) { width: 100%; min-height: 44px; margin-bottom: 11px; padding: 8px 10px; border: 1px solid #9c8c79; border-radius: 4px; background: white; color: var(--campus-ink); font: inherit; }
+.campus-contact input[aria-invalid="true"] { border-color: var(--campus-rust); }
+.campus-contact .campus-contact-hint { margin: 2px 0 9px; color: #544638; font-size: 14px; }
+.campus-contact .campus-contact-consent { display: flex; align-items: start; gap: 9px; padding-block: 6px; line-height: 1.4; cursor: pointer; }
+.campus-contact input[type="checkbox"] { width: 17px; height: 17px; margin: 1px 0 0; flex-shrink: 0; accent-color: var(--campus-rust); }
+.campus-contact .campus-contact-error { margin: 0 0 8px; color: #872015; font-size: 14px; font-weight: 700; }
+.campus-contact button { margin-top: 8px; }
+.campus-contact button:disabled { opacity: .7; cursor: wait; }
