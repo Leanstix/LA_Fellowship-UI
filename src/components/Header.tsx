@@ -44,12 +44,13 @@ export function Header({ logo }: HeaderProps) {
       </button>
 
       <div className={`mobile-panel ${open ? 'is-open' : ''}`}>
-        <nav aria-label="Mobile navigation">
+        <nav aria-label="Mobile navigation" inert={!open}>
           {links.map((link, index) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               <small>0{index + 1}</small>{link.label}
             </a>
           ))}
+          <a href="#connect" onClick={() => setOpen(false)}>Join the family</a>
         </nav>
         <p>University of Ibadan<br />Light Nation family</p>
       </div>

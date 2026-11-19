@@ -12,6 +12,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+main section[id] { scroll-margin-top: 88px; }
 body { margin: 0; min-width: 320px; overflow-x: hidden; background: var(--paper); }
 body, button, a { -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
@@ -49,7 +50,7 @@ img { display: block; max-width: 100%; }
 .hero-lower-copy > p { max-width: 410px; margin: 0; color: rgba(255,255,255,.68); font-size: 16px; line-height: 1.7; }
 .round-link { flex: 0 0 auto; width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; transition: .25s; }
 .round-link:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); transform: rotate(-10deg); }
-.hero-visual { position: relative; min-width: 0; }
+.hero-visual { position: relative; min-width: 0; background: radial-gradient(ellipse at 65% 44%, #5c3018, var(--ink) 72%); }
 .hero-visual > img { width: 100%; height: 100%; object-fit: cover; }
 .hero-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,15,12,.48), transparent 28%), linear-gradient(0deg, rgba(18,15,12,.7), transparent 45%); }
 .hero-sticker { position: absolute; right: 7%; top: 18%; width: 142px; aspect-ratio: 1; display: grid; place-content: center; gap: 11px; text-align: center; color: var(--ink); background: var(--gold); border-radius: 49% 51% 44% 56% / 53% 44% 56% 47%; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; transform: rotate(8deg); animation: float 5s ease-in-out infinite; }
@@ -100,13 +101,11 @@ img { display: block; max-width: 100%; }
 
 .sermons { padding: 130px 0 160px; }
 .sermon-layout { min-height: 640px; margin-top: 70px; display: grid; grid-template-columns: .8fr 1.2fr; align-items: center; gap: 30px; }
-.coming-soon { display: flex; align-items: center; gap: 9px; margin-bottom: 25px; font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
-.coming-soon i { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 5px rgba(255,90,31,.14); }
 .sermon-copy h2 { font-size: clamp(58px, 6.4vw, 98px); }
 .sermon-copy h2 em { color: var(--orange); }
-.sermon-copy > p:not(.coming-soon) { max-width: 500px; margin: 38px 0 30px; color: rgba(18,15,12,.62); font-size: 16px; line-height: 1.75; }
-.ghost-button { display: flex; gap: 18px; align-items: center; padding: 0 0 10px; border: 0; border-bottom: 1px solid var(--ink); color: rgba(18,15,12,.62); background: transparent; font-weight: 700; cursor: not-allowed; }
-.sermon-copy small { display: block; margin-top: 11px; color: rgba(18,15,12,.45); }
+.sermon-copy > p { max-width: 500px; margin: 38px 0 30px; color: rgba(18,15,12,.62); font-size: 16px; line-height: 1.75; }
+.ghost-button { width: fit-content; display: flex; gap: 18px; align-items: center; padding: 0 0 10px; border-bottom: 1px solid var(--ink); color: var(--ink); font-weight: 700; }
+.sermon-copy small { display: block; margin-top: 11px; color: rgba(18,15,12,.67); }
 .sermon-art { position: relative; height: 620px; display: grid; place-items: center; overflow: hidden; }
 .sound-ring { position: absolute; border: 1px solid rgba(18,15,12,.16); border-radius: 50%; }
 .ring-one { width: 540px; height: 540px; }
@@ -115,7 +114,6 @@ img { display: block; max-width: 100%; }
 .sermon-disc { z-index: 2; width: 260px; height: 260px; display: grid; place-content: center; gap: 22px; border-radius: 50%; color: #fff; background: var(--ink); box-shadow: 0 35px 80px rgba(18,15,12,.22); }
 .sermon-disc svg { color: var(--gold); }
 .sermon-disc span { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1.05; }
-.play-button { z-index: 4; position: absolute; width: 76px; height: 76px; right: 15%; bottom: 17%; display: grid; place-items: center; border: 0; border-radius: 50%; color: var(--ink); background: var(--gold); }
 .sound-bars { position: absolute; left: 3%; bottom: 17%; height: 80px; display: flex; align-items: center; gap: 5px; transform: rotate(-7deg); }
 .sound-bars i { display: block; width: 4px; border-radius: 8px; background: var(--orange); }
 
@@ -188,7 +186,6 @@ footer { padding: 90px 5vw 30px; color: #fff; background: var(--ink); }
   .hero h1 { font-size: clamp(54px, 17vw, 77px); line-height: .87; }
   .hero-lower-copy { margin-top: 35px; align-items: center; }
   .hero-lower-copy > p { font-size: 14px; line-height: 1.55; }
-  .round-link { display: none; }
   .hero-sticker { width: 105px; right: 5%; top: 16%; font-size: 10px; }
   .ticker { height: 45px; }
   .ticker span { font-size: 11px; }
@@ -214,7 +211,6 @@ footer { padding: 90px 5vw 30px; color: #fff; background: var(--ink); }
   .ring-three { width: 235px; height: 235px; }
   .sermon-disc { width: 205px; height: 205px; }
   .sermon-disc span { font-size: 24px; }
-  .play-button { width: 62px; height: 62px; right: 3%; }
   .sound-bars { left: -8%; transform: scale(.75) rotate(-7deg); }
   .connect { min-height: 700px; }
   .connect-content > p:not(.eyebrow) { font-size: 15px; }
@@ -228,4 +224,24 @@ footer { padding: 90px 5vw 30px; color: #fff; background: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+.round-link > span { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.moments-notice { margin-top: 42px; color: rgba(255,255,255,.77); }
+.ghost-button:hover { color: #a73b13; }
+.content-notice p { margin: 0 0 8px; }
+.content-notice button { padding: 6px 0; color: inherit; background: transparent; border: 0; text-decoration: underline; cursor: pointer; }
+.connect .content-notice { margin-top: 36px; }
+
+@media (max-width: 1050px) {
+  .mobile-panel { overflow-y: auto; }
+  .mobile-panel nav a:last-child { font-family: inherit; font-size: 16px; font-weight: 700; }
+}
+
+@media (max-width: 680px) {
+  main section[id] { scroll-margin-top: 76px; }
+  .hero-lower-copy { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .round-link { display: flex; align-items: center; gap: 10px; width: auto; height: auto; min-height: 44px; padding: 8px 12px; border-radius: 999px; font-size: 13px; }
+  .round-link > span { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .round-link svg { width: 18px; }
 }

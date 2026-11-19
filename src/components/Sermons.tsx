@@ -1,18 +1,21 @@
-import { ArrowUpRight, Headphones, Play } from 'lucide-react'
+import { ArrowUpRight, Headphones } from 'lucide-react'
+import type { ReactNode } from 'react'
 
-export function Sermons() {
+type SermonsProps = { archiveUrl?: string | null; notice: ReactNode }
+
+export function Sermons({ archiveUrl, notice }: SermonsProps) {
   return (
     <section className="sermons section-shell" id="sermons">
       <div className="section-kicker"><span>03</span><p>Stay in the Word</p></div>
       <div className="sermon-layout">
         <div className="sermon-copy">
-          <p className="coming-soon"><i /> Sermon library · coming soon</p>
           <h2>Truth for<br /><em>everyday life.</em></h2>
-          <p>Missed a meeting or want to listen again? Our growing sermon library will make teachings from the fellowship available wherever you are.</p>
-          <button className="ghost-button" type="button" disabled aria-describedby="library-note">
-            Open sermon library <ArrowUpRight />
-          </button>
-          <small id="library-note">The Google Drive archive will be connected here.</small>
+          <p>Missed a meeting or want to listen again? Find teachings from the fellowship wherever you are.</p>
+          {archiveUrl === undefined ? notice : archiveUrl ? (
+            <a className="ghost-button" href={archiveUrl} target="_blank" rel="noopener noreferrer">
+              Open sermon library <ArrowUpRight aria-hidden="true" />
+            </a>
+          ) : <small>The sermon library is coming soon.</small>}
         </div>
 
         <div className="sermon-art" aria-hidden="true">
@@ -23,7 +26,6 @@ export function Sermons() {
             <Headphones />
             <span>Listen.<br />Learn.<br />Live.</span>
           </div>
-          <button className="play-button" tabIndex={-1}><Play fill="currentColor" /></button>
           <div className="sound-bars">{Array.from({ length: 18 }).map((_, i) => <i key={i} style={{ height: `${18 + ((i * 17) % 54)}px` }} />)}</div>
         </div>
       </div>

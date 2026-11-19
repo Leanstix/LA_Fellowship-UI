@@ -1,10 +1,12 @@
 import { ArrowDownRight, Sparkles } from 'lucide-react'
 
+import type { PublicMoment } from '../api/content'
+
 type HeroProps = {
-  image: string
+  moment?: PublicMoment
 }
 
-export function Hero({ image }: HeroProps) {
+export function Hero({ moment }: HeroProps) {
   return (
     <section className="hero" id="top">
       <div className="hero-grain" />
@@ -16,12 +18,12 @@ export function Hero({ image }: HeroProps) {
         </h1>
         <div className="hero-lower-copy">
           <p>A people formed by the Word, alive in worship, and committed to carrying the light of Christ everywhere.</p>
-          <a href="#about" className="round-link" aria-label="Discover the fellowship"><ArrowDownRight /></a>
+          <a href="#about" className="round-link"><span>Discover the fellowship</span><ArrowDownRight aria-hidden="true" /></a>
         </div>
       </div>
 
       <div className="hero-visual">
-        <img src={image} alt="A congregation gathered in worship" />
+        {moment && <img src={moment.image} alt={moment.alt} style={{ objectPosition: moment.align }} />}
         <div className="hero-image-shade" />
         <div className="hero-sticker">
           <Sparkles size={18} />
