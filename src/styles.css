@@ -32,7 +32,7 @@ img { display: block; max-width: 100%; }
 .desktop-nav a { position: relative; font-size: 13px; color: rgba(255,255,255,.82); }
 .desktop-nav a::after { content: ''; position: absolute; left: 0; bottom: -7px; width: 100%; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: right; transition: transform .25s; }
 .desktop-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
-.header-cta { padding: 12px 17px; border: 1px solid rgba(255,255,255,.45); font-size: 13px; font-weight: 600; border-radius: 999px; transition: .25s; }
+.header-cta { display: flex; align-items: center; gap: 6px; padding: 12px 17px; border: 1px solid rgba(255,255,255,.45); font-size: 13px; font-weight: 600; border-radius: 999px; transition: .25s; }
 .header-cta:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); }
 .menu-button { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; color: #fff; background: transparent; }
 .mobile-panel { display: none; }
@@ -52,6 +52,7 @@ img { display: block; max-width: 100%; }
 .round-link:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); transform: rotate(-10deg); }
 .hero-visual { position: relative; min-width: 0; background: radial-gradient(ellipse at 65% 44%, #5c3018, var(--ink) 72%); }
 .hero-visual > img { width: 100%; height: 100%; object-fit: cover; }
+.hero-visual > .hero-mark { position: absolute; inset: 17% 8% auto auto; width: min(82%, 520px); height: auto; opacity: .14; }
 .hero-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,15,12,.48), transparent 28%), linear-gradient(0deg, rgba(18,15,12,.7), transparent 45%); }
 .hero-sticker { position: absolute; right: 7%; top: 18%; width: 142px; aspect-ratio: 1; display: grid; place-content: center; gap: 11px; text-align: center; color: var(--ink); background: var(--gold); border-radius: 49% 51% 44% 56% / 53% 44% 56% 47%; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; transform: rotate(8deg); animation: float 5s ease-in-out infinite; }
 .hero-sticker svg { margin: auto; }
@@ -169,6 +170,7 @@ footer { padding: 90px 5vw 30px; color: #fff; background: var(--ink); }
   .hero h1 { font-size: clamp(64px, 12vw, 115px); }
   .hero h1 em { margin-left: 0; }
   .hero-sticker { top: 20%; }
+  .hero-visual > .hero-mark { width: min(68%, 430px); }
   .hero-caption { display: none; }
   .about-intro { grid-template-columns: 1fr; gap: 30px; }
   .about-body { width: 83%; }

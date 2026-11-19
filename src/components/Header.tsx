@@ -1,4 +1,4 @@
-import { Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 type HeaderProps = {
@@ -38,7 +38,7 @@ export function Header({ logo }: HeaderProps) {
         {links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
       </nav>
 
-      <a className="header-cta" href="#connect">Join the family <span aria-hidden="true">↗</span></a>
+      <a className="header-cta" href="#connect">Join the family <ArrowUpRight aria-hidden="true" size={14} /></a>
       <button className="menu-button" onClick={() => setOpen((value) => !value)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>
         {open ? <X /> : <Menu />}
       </button>

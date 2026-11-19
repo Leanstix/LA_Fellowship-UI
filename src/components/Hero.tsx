@@ -1,5 +1,6 @@
 import { ArrowDownRight, Sparkles } from 'lucide-react'
 
+import logo from '../assets/la-fellowship-logo.png'
 import type { PublicMoment } from '../api/content'
 
 type HeroProps = {
@@ -23,13 +24,17 @@ export function Hero({ moment }: HeroProps) {
       </div>
 
       <div className="hero-visual">
-        {moment && <img src={moment.image} alt={moment.alt} style={{ objectPosition: moment.align }} />}
-        <div className="hero-image-shade" />
-        <div className="hero-sticker">
-          <Sparkles size={18} />
-          <span>One family.<br />One light.</span>
-        </div>
-        <p className="hero-caption">Raising a generation<br />that burns for Jesus.</p>
+        {moment ? (
+          <>
+            <img src={moment.image} alt={moment.alt} style={{ objectPosition: moment.align }} />
+            <div className="hero-image-shade" />
+            <div className="hero-sticker">
+              <Sparkles size={18} />
+              <span>One family.<br />One light.</span>
+            </div>
+            <p className="hero-caption">Raising a generation<br />that burns for Jesus.</p>
+          </>
+        ) : <img className="hero-mark" src={logo} alt="" />}
       </div>
 
       <div className="ticker" aria-hidden="true">
