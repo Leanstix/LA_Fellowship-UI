@@ -3,9 +3,9 @@ import './Confession.css'
 export function Confession() {
   return (
     <section className="confession" id="confession" aria-labelledby="confession-heading">
-      <div className="section-shell confession-inner">
+      <div className="campus-shell confession-inner">
         <div className="confession-heading">
-          <p className="confession-kicker">Our confession</p>
+          <p className="campus-kicker">Our confession</p>
           <h2 id="confession-heading">L.A Fellowship<br /><em>Confession</em></h2>
         </div>
         <div className="confession-words">

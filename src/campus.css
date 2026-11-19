@@ -116,3 +116,42 @@
   .campus-visit-layout, .campus-about-layout { grid-template-columns: minmax(0, 1fr); }
   .campus-title { font-size: clamp(46px, 11.5vw, 68px); margin-bottom: 14px; }
 }
+
+.campus-moments { padding-block: clamp(44px, 7.5vw, 103px); color: var(--campus-white); background: #2d231b; }
+.campus-moments .campus-kicker { color: var(--campus-amber); }
+.campus-moments-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; margin: 27px 0 0; padding: 0; list-style: none; }
+.campus-moments-grid li { display: grid; grid-column: span 5; }
+.campus-moments-grid li:nth-child(4n + 1), .campus-moments-grid li:nth-child(4n + 4) { grid-column: span 7; }
+.campus-moments-grid li:last-child:nth-child(odd) { grid-column: span 12; }
+.campus-moments-grid figure { position: relative; min-height: clamp(220px, 27vw, 366px); margin: 0; overflow: hidden; background: #4c3b2b; }
+.campus-moments-grid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.campus-moments-grid figcaption { position: absolute; inset: auto 0 0; padding: 36px 17px 14px; background: linear-gradient(transparent, #160e07e6); color: white; font-weight: 700; overflow-wrap: anywhere; }
+.campus-moments-grid figcaption small { display: block; margin-bottom: 2px; font-size: .75rem; font-weight: 600; }
+.campus-gallery-notice { margin: 0; }
+.campus-sermons { padding-block: clamp(44px, 7.5vw, 103px); }
+.campus-sermons-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(26px, 7vw, 105px); }
+.campus-sermons-layout p:not(.campus-kicker) { margin: 0; color: #544638; line-height: 1.58; }
+.campus-sermon-archive { display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: start; gap: 16px; padding: clamp(18px, 3.2vw, 38px); border: 1px solid var(--campus-line); background: var(--campus-white); }
+.campus-sermon-archive > svg { color: var(--campus-rust); }
+.campus-sermon-archive h3 { margin: 0 0 6px; font-size: 20px; }
+.campus-sermon-archive a, .campus-footer-visit a { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.campus-sermon-archive a:hover { color: var(--campus-rust); }
+.campus-footer { padding: clamp(32px, 5vw, 70px) 0 22px; border-top: 1px solid var(--campus-line); }
+.campus-footer-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .62fr) minmax(0, 1fr); align-items: start; gap: 28px 36px; }
+.campus-footer-brand { display: flex; align-items: flex-start; gap: 11px; }
+.campus-footer-brand img { flex: 0 0 64px; width: 64px; height: 64px; }
+.campus-footer-brand > div { margin-top: 10px; }
+.campus-footer p { margin: 5px 0 0; color: #544638; line-height: 1.5; }
+.campus-footer nav { display: grid; justify-items: start; }
+.campus-footer nav a { min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 700; }
+.campus-footer a:hover { color: var(--campus-rust); }
+.campus-footer .campus-footer-copyright { margin: 25px 0 0; padding-top: 16px; border-top: 1px solid var(--campus-line); font-size: 13px; }
+.campus-site .content-notice p { margin: 0 0 5px; }
+.campus-site .content-notice button { min-height: 44px; padding-inline: 0; border: 0; background: transparent; color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+@media (max-width: 760px) {
+  .campus-moments-grid, .campus-sermons-layout { grid-template-columns: minmax(0, 1fr); }
+  .campus-moments-grid li:nth-child(n) { grid-column: auto; }
+  .campus-footer-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px 18px; }
+  .campus-footer-brand { grid-column: 1 / -1; }
+}

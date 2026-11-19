@@ -32,19 +32,6 @@ export function PublicSite() {
     return () => controller.abort()
   }, [attempt])
 
-  useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>('[data-reveal]')
-    if (!('IntersectionObserver' in window)) {
-      sections.forEach((section) => section.classList.add('is-visible'))
-      return
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('is-visible'))
-    }, { threshold: 0.12 })
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [])
-
   const retry = () => {
     setState({ status: 'loading' })
     setAttempt((value) => value + 1)
@@ -59,8 +46,8 @@ export function PublicSite() {
         <Hero moment={content?.moments[0]} settings={content?.settings} notice={serviceNotice} />
         <Connect settings={content?.settings} notice={serviceNotice} />
         <About />
-        <div data-reveal><Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} /></div>
-        <div data-reveal><Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} /></div>
+        <Moments moments={content?.moments} notice={<ContentNotice state={state.status} subject="gallery" onRetry={retry} />} />
+        <Sermons archiveUrl={content?.settings.sermonArchiveUrl} notice={<ContentNotice state={state.status} subject="sermon library" onRetry={retry} />} />
         <Confession />
       </main>
       <Footer logo={logo} settings={content?.settings} notice={serviceNotice} />

@@ -5,28 +5,23 @@ type SermonsProps = { archiveUrl?: string | null; notice: ReactNode }
 
 export function Sermons({ archiveUrl, notice }: SermonsProps) {
   return (
-    <section className="sermons section-shell" id="sermons">
-      <div className="section-kicker"><span>03</span><p>Stay in the Word</p></div>
-      <div className="sermon-layout">
-        <div className="sermon-copy">
-          <h2>Truth for<br /><em>everyday life.</em></h2>
-          <p>Missed a meeting or want to listen again? Find teachings from the fellowship wherever you are.</p>
-          {archiveUrl === undefined ? notice : archiveUrl ? (
-            <a className="ghost-button" href={archiveUrl} target="_blank" rel="noopener noreferrer">
-              Open sermon library <ArrowUpRight aria-hidden="true" />
-            </a>
-          ) : <small>The sermon library is coming soon.</small>}
+    <section className="campus-sermons" id="sermons" aria-labelledby="campus-sermons-heading">
+      <div className="campus-shell campus-sermons-layout">
+        <div>
+          <p className="campus-kicker">Sermons</p>
+          <h2 className="campus-title" id="campus-sermons-heading">Keep learning.</h2>
+          <p>Revisit teachings from the fellowship or catch up on a service you missed.</p>
         </div>
-
-        <div className="sermon-art" aria-hidden="true">
-          <div className="sound-ring ring-one" />
-          <div className="sound-ring ring-two" />
-          <div className="sound-ring ring-three" />
-          <div className="sermon-disc">
-            <Headphones />
-            <span>Listen.<br />Learn.<br />Live.</span>
+        <div className="campus-sermon-archive">
+          <Headphones aria-hidden="true" size={32} />
+          <div>
+            <h3>Sermon library</h3>
+            {archiveUrl === undefined ? notice : archiveUrl ? (
+              <a href={archiveUrl} target="_blank" rel="noopener noreferrer">
+                Open sermon library <ArrowUpRight aria-hidden="true" size={17} />
+              </a>
+            ) : <p>The sermon library is coming soon.</p>}
           </div>
-          <div className="sound-bars">{Array.from({ length: 18 }).map((_, i) => <i key={i} style={{ height: `${18 + ((i * 17) % 54)}px` }} />)}</div>
         </div>
       </div>
     </section>
