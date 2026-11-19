@@ -1,7 +1,8 @@
 export type OfficerPermissions = {
   accessOffice?: boolean
   manageExecutiveAccess?: boolean
-  viewContent?: boolean
+  viewSettings?: boolean
+  viewMoments?: boolean
   changeSettings?: boolean
   addMoment?: boolean
   changeMoment?: boolean

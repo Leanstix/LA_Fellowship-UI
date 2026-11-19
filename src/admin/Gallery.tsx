@@ -98,7 +98,7 @@ export function Gallery({ initialMoments, permissions, adminRequest }: GalleryPr
       <div className="admin-section-head">
         <div>
           <h2 id="admin-gallery-heading" ref={heading} tabIndex={-1}>Gallery</h2>
-          <p>Published photos appear in Moments. The first published photo also appears on the homepage.</p>
+          <p>Published photos appear in Moments. The first fellowship photo also appears at the top of the homepage.</p>
         </div>
         {permissions.addMoment && !editor && <button className="admin-button" type="button" disabled={pending || confirmDelete !== undefined} onClick={() => openEditor('new')}><ImagePlus size={17} aria-hidden="true" /> Add photo</button>}
       </div>

@@ -21,7 +21,9 @@ VITE_ENABLE_FELLOWSHIP_API=true npm run dev
 
 Vite proxies `/api/*`, `/office/*`, and `/static/*` to `http://127.0.0.1:8000`. Set `LA_BACKEND_URL` before launching Vite if the backend runs at another address. Open `http://localhost:5173/#/admin` and sign in with an officer account provisioned on the backend. Use **Open operations** to continue to the Django office with the same session. The office exposes the sections assigned to your role. The current president can open **Executive access** from the dashboard.
 
-Officers with content permissions can edit the public service details, sermon archive, or gallery. The service and sermon editor publishes changes on save. Leave the sermon archive URL blank to show “coming soon.” Gallery photos use public HTTPS image links. Drafts stay in the dashboard. The first published photo also appears in the public site's hero.
+Officers can view or edit the public service details, sermon archive, and gallery according to their permissions. The service and sermon editor publishes changes on save. Leave the sermon archive URL blank to show “coming soon.” Gallery photos use public HTTPS image links. Drafts stay in the dashboard. The first published photo beyond the illustrative defaults appears in the public hero. The hero shows the University of Ibadan main gate until a fellowship photo is published.
+
+In API mode, test the optional visitor contact form by opening **Plan your visit**, selecting **Request a follow-up**, and submitting a consented test request. An officer with follow-up access can confirm it appears under **First timers** in the Django office.
 
 ## Production deployment
 
